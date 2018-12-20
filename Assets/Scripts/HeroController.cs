@@ -1,15 +1,37 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityStandardAssets.CrossPlatformInput;
+
 /// <summary>
 /// Контроллер игрока
 /// </summary>
 public class HeroController : MonoBehaviour {
+    [SerializeField]
+    private Text _messageField;
+    [SerializeField]
+    private GameObject _panel;
+    /// <summary>
+    /// Отображение жизни игрока
+    /// </summary>
+    [SerializeField]
+    private Text _textHealth;
+    [SerializeField]
+    private int _health;
     /// <summary>
     /// Скорость движения персонажа
     /// </summary>
     [SerializeField]
     private float _moveSpeed;
+    
+    /// <summary>
+    /// Максимальная скорость передвижения персонажа
+    /// </summary>
+    [SerializeField]
+    private float _moveMaxSpeed;
+   
     /// <summary>
     ///  Массив звуков
     /// </summary>
@@ -20,7 +42,11 @@ public class HeroController : MonoBehaviour {
     /// Источник звука
     /// </summary>
     private AudioSource _audiosource;
-
+    /// <summary>
+    /// Ссылка на мину
+    /// </summary>
+    [SerializeField]
+    private GameObject _mine;
     /// <summary>
     /// Ссылка на пулю
     /// </summary>
@@ -83,6 +109,12 @@ public class HeroController : MonoBehaviour {
     private float _shootDelay;
 
     /// <summary>
+    /// Направление движения персонажа
+    /// </summary>
+    private Vector2  _dir = Vector2.zero;
+
+    private bool _die;
+    /// <summary>
     /// Проверяю коллизию на какой слой упал игрок
     /// </summary>
     /// <param name="collision"></param>
@@ -99,29 +131,46 @@ public class HeroController : MonoBehaviour {
         sr = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         _audiosource = GetComponent<AudioSource>();
-
+        _textHealth.text ="Жизнь: " + _health;
+    }
+   public void Fire()
+    {
+        if ( _isShoot)
+        {
+            Shoot();
+            Invoke("IsShoot", _shootDelay);
+        }
     }
 
-    
     void Update()
     {
-     
-          
-        float dir = Input.GetAxis("Horizontal");
-        if ( dir > 0)
-        {
+        #if UNITY_ANDROID
+        _dir.x = CrossPlatformInputManager.GetAxis("Horizontal") * _moveSpeed;
+        #endif
 
-            transform.Translate(Time.deltaTime * dir * _moveSpeed, 0, 0);
+        #if UNITY_STANDALONE_WIN 
+        _dir.x = Input.GetAxis("Horizontal") * _moveSpeed;
+        #endif
+        if ( _dir.x > 0)
+        {
+            rb.AddForce(Vector2.right * _dir.x, ForceMode2D.Force);
+            //transform.Translate(Time.deltaTime * dir * _moveSpeed, 0, 0);
             sr.flipX = false;
-           
-
         }
-        else if (dir < 0)
+
+        else if (_dir.x < 0)
         {
-            transform.Translate(Time.deltaTime * dir * _moveSpeed, 0, 0);
-            sr.flipX = true;
+            rb.AddForce(Vector2.right * _dir.x, ForceMode2D.Force);
+            //transform.Translate(Time.deltaTime * dir * _moveSpeed, 0, 0);
+            sr.flipX = true;   
         }
 
+        if (Mathf.Abs(rb.velocity.x) > _moveMaxSpeed)
+        {
+            _dir = rb.velocity;
+            _dir.x = Mathf.Clamp(rb.velocity.x, -_moveMaxSpeed, _moveMaxSpeed);
+            rb.velocity = _dir;
+        }
       
         // выстрел пули и проверка могу ли я совершить выстрел
         if ((Input.GetKeyDown(KeyCode.LeftControl) && _isShoot))
@@ -129,6 +178,10 @@ public class HeroController : MonoBehaviour {
             Shoot();
             Invoke("IsShoot", _shootDelay);
         }
+
+        // мины
+        if (Input.GetKeyDown(KeyCode.F))
+            Minner();
         // прыжок
         if ((Input.GetKeyDown(KeyCode.Space)))
         {
@@ -141,8 +194,25 @@ public class HeroController : MonoBehaviour {
                 Jump();
             }
         }
+        if (_health < 1)
+            Die();
+        if (Input.GetKeyDown(KeyCode.Escape) && _die)
+        {
+            Application.LoadLevel(0);
+            Time.timeScale = 1f;
+        }
     }
-
+    public void JumpForce()
+    {
+         if (!_isJumped)
+            {
+                Jump();
+}
+            else if (_isJumped && !_isDoubleJumped)
+            {
+                Jump();
+            }
+    }
     /// <summary>
     /// Метод стрельбы
     /// </summary>
@@ -160,31 +230,63 @@ public class HeroController : MonoBehaviour {
         if (sr.flipX) Instantiate(_bullet, _placeShotLeft.transform.position, transform.rotation);
         if (!sr.flipX) Instantiate(_bullet, _placeShotRight.transform.position, transform.rotation);
     }
-
+    /// <summary>
+    /// Метод укладки мины
+    /// </summary>
+    public void Minner()
+    {
+        if (sr.flipX) Instantiate(_mine, _placeShotLeft.transform.position, transform.rotation);
+        if (!sr.flipX) Instantiate(_mine, _placeShotRight.transform.position, transform.rotation);
+    }
     /// <summary>
     /// Метод разрешающий стрельбу
     /// </summary>
     private void IsShoot()
     {
-        transform.rotation (Quaternion.);
+        
         _isShoot = true;
     }
 
     /// <summary>
     /// Метод прыжка
     /// </summary>
-    private void Jump()
+    public void Jump()
     {
         if (_isJumped && !_isDoubleJumped)
         {
             _isDoubleJumped = true;
-            rb.AddForce(Vector2.up * _jumpForce);
+            rb.AddForce(Vector2.up * _jumpForce, ForceMode2D.Impulse);
         }
         else
         {
             _isJumped = true;
-            rb.AddForce(Vector2.up * _jumpForce);
+            rb.AddForce(Vector2.up * _jumpForce, ForceMode2D.Impulse);
         }
             
     }
+
+    /// <summary>
+    /// Метод вычитания здоровья врага
+    /// </summary>
+    /// <param name="damage">Параметр урона по врагу</param>
+    public void Hurt(int damage)
+    {
+        _health -= damage;
+        _textHealth.text = "Жизнь: " + _health;
+    }
+
+    public void Health(int health)
+    {
+        _health += health;
+        _textHealth.text = "Жизнь: " + _health;
+
+    }
+    private void Die()
+    {
+        _die = true;
+        _panel.SetActive(true);
+        _messageField.text = "Ну что ж, не повезло, нажми Ecsape и начни сначала, а так, совет мой - нужно было аптечки покушать";
+        Time.timeScale = 0.00000000001f;
+    }
+       
 }

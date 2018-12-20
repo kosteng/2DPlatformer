@@ -8,7 +8,7 @@ public class EnemyController : MonoBehaviour {
     /// Очки жизни врага
     /// </summary>
     [SerializeField]
-    private float _health;
+    private int _health;
 
     
     /// <summary>
@@ -44,13 +44,13 @@ public class EnemyController : MonoBehaviour {
     /// Метод вычитания здоровья врага
     /// </summary>
     /// <param name="damage">Параметр урона по врагу</param>
-    public void Hurt(float damage)
+    public void Hurt(int damage)
     {
         _health -= damage;
     }
-   
-  
-   
+
+
+
     /// <summary>
     /// Метод движения врага
     /// </summary>

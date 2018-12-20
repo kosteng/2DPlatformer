@@ -35,13 +35,13 @@ GameObject:
   m_Component:
   - component: {fileID: 4232897327560020}
   - component: {fileID: 212486140158966310}
-  - component: {fileID: 61785717809016666}
   - component: {fileID: 50695326335452832}
   - component: {fileID: 114761947046329468}
   - component: {fileID: 82117401096369978}
+  - component: {fileID: 70542916294688996}
   m_Layer: 0
   m_Name: hero
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -81,7 +81,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1595899606889274}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.606, y: -1.9368968, z: 0}
+  m_LocalPosition: {x: -14.72, y: -5.168478, z: 1}
   m_LocalScale: {x: 0.4, y: 0.4, z: 1}
   m_Children:
   - {fileID: 4108733643985390}
@@ -117,13 +117,13 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 8b2e0bcead9dc3543b51f68a60c3f20d, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!61 &61785717809016666
-BoxCollider2D:
+--- !u!70 &70542916294688996
+CapsuleCollider2D:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -134,19 +134,9 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.042137265, y: 0.13902026}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 4, y: 4}
-    newSize: {x: 4, y: 4}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1.5464213, y: 3.7219596}
-  m_EdgeRadius: 0
+  m_Offset: {x: -0.25353193, y: -0.029975772}
+  m_Size: {x: 0.6101513, y: 3.340522}
+  m_Direction: 0
 --- !u!82 &82117401096369978
 AudioSource:
   m_ObjectHideFlags: 1
@@ -158,7 +148,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.23
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -253,12 +243,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca6d8b082c9d95d469c4ad78c101c391, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _messageField: {fileID: 0}
+  _panel: {fileID: 0}
+  _textHealth: {fileID: 0}
+  _health: 4
+  _moveSpeed: 15
+  _moveMaxSpeed: 4
   _clips:
   - {fileID: 8300000, guid: f0efd758bf582554e86e7bab31561326, type: 3}
   - {fileID: 8300000, guid: 57162f7990e03ad4098a0251d6a1f05c, type: 3}
+  _mine: {fileID: 1600265558402326, guid: a1a4f035787967340869e959f8b12e7c, type: 2}
   _bullet: {fileID: 1447202304122368, guid: 28607306442b0ae48bf5f09328fb085b, type: 2}
   _placeShotLeft: {fileID: 1246441907208618}
-  _jumpForce: 300
+  _jumpForce: 9
   _placeShotRight: {fileID: 1704607918896718}
   _whatIsGround:
     serializedVersion: 2
@@ -298,7 +295,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 6
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 5e3f9df720a9e3742a6eb2f4f84f1ad5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
