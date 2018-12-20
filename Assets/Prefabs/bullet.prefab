@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 114247597314402240}
   - component: {fileID: 61238672118856450}
   - component: {fileID: 82001731937780392}
+  - component: {fileID: 50018997306128536}
   m_Layer: 0
   m_Name: bullet
   m_TagString: Untagged
@@ -43,6 +44,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &50018997306128536
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1447202304122368}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 0.5
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 2
 --- !u!61 &61238672118856450
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -174,7 +195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1274363586facfb47a2ae861659f78ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speedBullet: 4
+  _speedBullet: 5
   _lifeTime: 5
   _bulletDamage: 1
   _clips:
@@ -217,7 +238,7 @@ SpriteRenderer:
   m_SortingOrder: 6
   m_Sprite: {fileID: 21300000, guid: 6d30c9fe0f8dcef49a3a756d56b65afb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 1
+  m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 5.71, y: 4.47}
