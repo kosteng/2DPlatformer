@@ -131,7 +131,7 @@ public class HeroController : MonoBehaviour {
         sr = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         _audiosource = GetComponent<AudioSource>();
-        _textHealth.text ="Жизнь: " + _health;
+   //     _textHealth.text ="Жизнь: " + _health;
     }
    public void Fire()
     {
@@ -149,6 +149,9 @@ public class HeroController : MonoBehaviour {
         #endif
 
         #if UNITY_STANDALONE_WIN 
+        _dir.x = Input.GetAxis("Horizontal") * _moveSpeed;
+        #endif
+        #if UNITY_EDITOR
         _dir.x = Input.GetAxis("Horizontal") * _moveSpeed;
         #endif
         if ( _dir.x > 0)
@@ -204,14 +207,14 @@ public class HeroController : MonoBehaviour {
     }
     public void JumpForce()
     {
-         if (!_isJumped)
-            {
-                Jump();
-}
-            else if (_isJumped && !_isDoubleJumped)
-            {
-                Jump();
-            }
+        if (!_isJumped)
+        {
+            Jump();
+        }
+        else if (_isJumped && !_isDoubleJumped)
+        {
+            Jump();
+        }
     }
     /// <summary>
     /// Метод стрельбы
