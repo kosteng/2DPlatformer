@@ -476,7 +476,7 @@ PrefabInstance:
     - target: {fileID: 7720151477692690349, guid: 4fed20e741be0754ca5af5b563f2ec33,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4fed20e741be0754ca5af5b563f2ec33, type: 3}
@@ -505,11 +505,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1534903770}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3370fc60d6bc4e343a36c806012c7855, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _whatIsGround:
+    serializedVersion: 2
+    m_Bits: 256
   _spriteRenderer: {fileID: 1534903775}
   _rigidbody2D: {fileID: 1534903774}
   jumpForce: 0

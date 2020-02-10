@@ -25,19 +25,18 @@ public class PlayerCharacterView : MonoBehaviour
             _isDoubleJumped = false;
         }
     }
+
     public void Move()
     {
         _direction.x = Input.GetAxis("Horizontal") * moveSpeed;
         if (_direction.x > 0)
         {
-             transform.Translate(Time.deltaTime * _direction.x * moveSpeed, 0, 0);
-            _spriteRenderer.flipX = false;
+            MoveToRight();
         }
 
         if (_direction.x < 0)
         {
-            transform.Translate(Time.deltaTime * _direction.x * moveSpeed, 0, 0);
-            _spriteRenderer.flipX = true;
+            MoveToLeft();
         }
     }
 
@@ -67,8 +66,17 @@ public class PlayerCharacterView : MonoBehaviour
             _isJumped = true;
             _rigidbody2D.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }
+    }
 
-        
+    private void MoveToRight()
+    {
+        transform.Translate(Time.deltaTime * _direction.x * moveSpeed, 0, 0);
+        _spriteRenderer.flipX = false;
+    }
+    private void MoveToLeft()
+    {
+        transform.Translate(Time.deltaTime * _direction.x * moveSpeed, 0, 0);
+        _spriteRenderer.flipX = true;
     }
     void Update()
     {
