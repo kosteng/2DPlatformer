@@ -3,11 +3,11 @@
 public class ProjectInstaller : MonoBehaviour
 {
     private ProjectInfrastructure _projectInfrastructure;
-    [SerializeField] private MonoBehaviourServiceLocator _monoBehaviourServiceLocator;
+    [SerializeField] private MonoBehaviourConteiner _monoBehaviourConteiner;
 
     private void Awake()
     {
-        _projectInfrastructure = new ProjectInfrastructure(_monoBehaviourServiceLocator);
+        _projectInfrastructure = new ProjectInfrastructure(_monoBehaviourConteiner);
     }
 
     void Start()
@@ -19,6 +19,7 @@ public class ProjectInstaller : MonoBehaviour
     {
         _projectInfrastructure.Update(Time.deltaTime);
     }
+
     private void FixedUpdate()
     {
         _projectInfrastructure.FixedUpdate(Time.deltaTime);

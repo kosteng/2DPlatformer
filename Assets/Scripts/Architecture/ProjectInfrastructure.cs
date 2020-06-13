@@ -1,11 +1,16 @@
 ﻿public class ProjectInfrastructure 
 {
-    private MonoBehaviourServiceLocator _monoBehaviourServiceLocator;
+    private MonoBehaviourConteiner _monoBehaviourConteiner;
     private readonly PlayerController _playerController;
-    public ProjectInfrastructure (MonoBehaviourServiceLocator monoBehaviourServiceLocator)
+    private readonly PlayerModel _playerModel;
+
+    public ProjectInfrastructure (MonoBehaviourConteiner monoBehaviourConteiner)
     {
-        _monoBehaviourServiceLocator = monoBehaviourServiceLocator;
-        _playerController = new PlayerController(monoBehaviourServiceLocator.PlayerCharacterView);
+        _monoBehaviourConteiner = monoBehaviourConteiner;
+        _playerModel = new PlayerModel();
+        _playerController = new PlayerController(_monoBehaviourConteiner.PlayerDatabase, 
+                                                 _monoBehaviourConteiner.PlayerFactory, 
+                                                 _monoBehaviourConteiner.MainCameraFactory);
     }
 
     public void Start()
@@ -15,7 +20,7 @@
 
     public void Update(float deltaTime)
     {
-        _playerController.Update();
+        _playerController.Update(deltaTime);
     }
 
     public void FixedUpdate (float deltaTime)

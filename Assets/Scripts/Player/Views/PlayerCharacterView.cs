@@ -1,25 +1,26 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerCharacterView : MonoBehaviour
 {
-
     private bool _isJumped;
     private bool _isDoubleJumped;
     private Vector2 _direction;
-    [SerializeField] private LayerMask _whatIsGround;
+    [SerializeField] private LayerMask _isGround;
     [SerializeField] private SpriteRenderer _spriteRenderer;
     [SerializeField] private Rigidbody2D _rigidbody2D;
     public float jumpForce;
     public float moveSpeed;
+    public GameObject ShootPlace;
+    public GameObject BulletPrefab;
+
     void Start()
     {
-        
+
     }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.otherCollider.IsTouchingLayers(_whatIsGround))
+        if (collision.otherCollider.IsTouchingLayers(_isGround))
         {
             _isJumped = false;
             _isDoubleJumped = false;
@@ -54,6 +55,7 @@ public class PlayerCharacterView : MonoBehaviour
             }
         }
     }
+
     private void JumpFirstOrDouble()
     {
         if (_isJumped && !_isDoubleJumped)
@@ -71,15 +73,18 @@ public class PlayerCharacterView : MonoBehaviour
     private void MoveToRight()
     {
         transform.Translate(Time.deltaTime * _direction.x * moveSpeed, 0, 0);
-        _spriteRenderer.flipX = false;
+        transform.rotation = Quaternion.Euler(0,0,0);
     }
+
     private void MoveToLeft()
     {
-        transform.Translate(Time.deltaTime * _direction.x * moveSpeed, 0, 0);
-        _spriteRenderer.flipX = true;
+        transform.Translate(Time.deltaTime * -_direction.x * moveSpeed, 0, 0);
+        transform.rotation = Quaternion.Euler(0, 180, 0);
     }
-    void Update()
+
+    private void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.F))
+            Instantiate(BulletPrefab, ShootPlace.transform.position, Quaternion.identity);
     }
 }
