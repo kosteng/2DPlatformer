@@ -10,6 +10,7 @@ public class MonoBehaviourConteiner : MonoBehaviour
     //Factories
     public PlayerFactory PlayerFactory;
     public MainCameraFactory MainCameraFactory;
+    public BulletFactory BulletFactory;
 
     // Databases
     public PlayerDatabase PlayerDatabase;

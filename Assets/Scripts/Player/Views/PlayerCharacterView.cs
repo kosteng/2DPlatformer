@@ -82,9 +82,5 @@ public class PlayerCharacterView : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, 180, 0);
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.F))
-            Instantiate(BulletPrefab, ShootPlace.transform.position, Quaternion.identity);
-    }
+    
 }
