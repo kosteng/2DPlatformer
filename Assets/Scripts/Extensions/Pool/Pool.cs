@@ -1,25 +1,26 @@
 ﻿using System.Collections.Generic;
 
-public class Pool<T>
+namespace Extensions.Pool
 {
-    private IFactory<T> _factory;
-    public Queue<T> PoolQueue = new Queue<T>();
-
-    public Pool(IFactory<T> factory)
+    public class Pool<T>
     {
-		_factory = factory;
-    }
+        private readonly IFactory<T> _factory;
+        private readonly Queue<T> PoolQueue = new Queue<T>();
 
-    public T GetObject()
-    {
-        if (PoolQueue.Count > 0)
-            return PoolQueue.Dequeue();
-        return _factory.Create();
-    }
+        public Pool(IFactory<T> factory)
+        {
+            _factory = factory;
+        }
 
-    public void Back(T gameObject)
-    {
-        PoolQueue.Enqueue(gameObject);
+        public T GetObject()
+        {
+            return PoolQueue.Count > 0 ? PoolQueue.Dequeue() : _factory.Create();
+        }
+
+        public void Back(T gameObject)
+        {
+            PoolQueue.Enqueue(gameObject);
+        }
     }
 }
 

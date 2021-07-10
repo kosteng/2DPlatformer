@@ -1,4 +1,7 @@
-﻿public interface IFactory<T>
+﻿namespace Extensions.Pool
 {
-	T Create();
+	public interface IFactory<T>
+	{
+		T Create();
+	}
 }

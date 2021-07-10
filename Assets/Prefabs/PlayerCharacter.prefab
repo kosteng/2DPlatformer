@@ -11,10 +11,9 @@ GameObject:
   - component: {fileID: 7198606174245705894}
   - component: {fileID: 6997319366825170900}
   - component: {fileID: 7160024950100880210}
-  - component: {fileID: 7097154598357471630}
   - component: {fileID: 7118540332978346696}
   - component: {fileID: 7139051519473052950}
-  - component: {fileID: 5455670556734420980}
+  - component: {fileID: 8692035332060210218}
   m_Layer: 0
   m_Name: PlayerCharacter
   m_TagString: Player
@@ -30,8 +29,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7200187725614898888}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -14.72, y: -5.168478, z: 1}
-  m_LocalScale: {x: 0.4, y: 0.4, z: 1}
+  m_LocalPosition: {x: 0, y: 2, z: 1}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children:
   - {fileID: 7198730500182031388}
   m_Father: {fileID: 0}
@@ -51,6 +50,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -62,6 +62,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -74,12 +75,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5e3f9df720a9e3742a6eb2f4f84f1ad5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a0bdf92d132204546b714fe87b17917d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 4, y: 4}
+  m_Size: {x: 19.2, y: 10.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -101,41 +102,11 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 6200000, guid: 8b2e0bcead9dc3543b51f68a60c3f20d, type: 2}
+  m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &7097154598357471630
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7200187725614898888}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca6d8b082c9d95d469c4ad78c101c391, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _messageField: {fileID: 0}
-  _panel: {fileID: 0}
-  _textHealth: {fileID: 0}
-  _health: 4
-  _moveSpeed: 15
-  _moveMaxSpeed: 4
-  _clips:
-  - {fileID: 8300000, guid: f0efd758bf582554e86e7bab31561326, type: 3}
-  - {fileID: 8300000, guid: 57162f7990e03ad4098a0251d6a1f05c, type: 3}
-  _mine: {fileID: 1600265558402326, guid: a1a4f035787967340869e959f8b12e7c, type: 3}
-  _bullet: {fileID: 1447202304122368, guid: 28607306442b0ae48bf5f09328fb085b, type: 3}
-  _placeShotLeft: {fileID: 0}
-  _jumpForce: 9
-  _placeShotRight: {fileID: 7201134532361296828}
-  _whatIsGround:
-    serializedVersion: 2
-    m_Bits: 256
-  _shootDelay: 0.37
 --- !u!82 &7118540332978346696
 AudioSource:
   m_ObjectHideFlags: 0
@@ -248,7 +219,7 @@ CapsuleCollider2D:
   m_Offset: {x: -0.25353193, y: -0.029975772}
   m_Size: {x: 0.6101513, y: 3.340522}
   m_Direction: 0
---- !u!114 &5455670556734420980
+--- !u!114 &8692035332060210218
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -257,19 +228,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 7200187725614898888}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3370fc60d6bc4e343a36c806012c7855, type: 3}
+  m_Script: {fileID: 11500000, guid: 10b431561c3172a40a13c924d75744ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isGround:
-    serializedVersion: 2
-    m_Bits: 256
+  _animator: {fileID: 0}
   _spriteRenderer: {fileID: 6997319366825170900}
   _rigidbody2D: {fileID: 7160024950100880210}
-  jumpForce: 0
-  moveSpeed: 0
-  ShootPlace: {fileID: 7201134532361296828}
-  BulletPrefab: {fileID: 1447202304122368, guid: 28607306442b0ae48bf5f09328fb085b,
-    type: 3}
+  _isGround:
+    serializedVersion: 2
+    m_Bits: 1
+  IsJumped: 0
+  IsDoubleJumped: 0
 --- !u!1 &7201134532361296828
 GameObject:
   m_ObjectHideFlags: 0

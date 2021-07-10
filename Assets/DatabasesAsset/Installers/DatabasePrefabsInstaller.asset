@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78dd3f3b2cb595741864c7b8ede78d91, type: 3}
+  m_Name: DatabasePrefabsInstaller
+  m_EditorClassIdentifier: 
+  _interactItemsDatabase: {fileID: 11400000, guid: 334331c176ae77c458c2b296ee0ef06c,
+    type: 2}
+  _resourceItemsDatabase: {fileID: 11400000, guid: d42449f736f02e54985533f68e4d9858,
+    type: 2}
+  _charactersDatabase: {fileID: 11400000, guid: 614d93cb44f52b24db29fb2f51130ad1,
+    type: 2}
+  _player: {fileID: 8692035332060210218, guid: 56a0fa117c82d534badc915f8592e2a3, type: 3}
+  _cameraView: {fileID: 1644961497289866044, guid: dd5f6c43423fead4ca1f13c9aee0b111,
+    type: 3}
+  _inventoryCell: {fileID: 5045853151615434146, guid: 7c23e6c7b1ce2984f9f271eb310df722,
+    type: 3}

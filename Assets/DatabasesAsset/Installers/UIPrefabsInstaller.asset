@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdc2d4644646600489db8487dcf25e30, type: 3}
+  m_Name: UIPrefabsInstaller
+  m_EditorClassIdentifier: 
+  _canvasView: {fileID: 3702184945147060621, guid: 5721b1486c3091d44b0c1c99e6dff372,
+    type: 3}
+  _bottomPanelView: {fileID: 3602537312771902967, guid: 15286ede484de884f9ceed9606a1b5c9,
+    type: 3}
+  _buildingBuyPanelView: {fileID: 2531081940755856250, guid: c4a482d7051ea1d44ab88d83f723c06b,
+    type: 3}
+  _cityView: {fileID: 6885767866467588915, guid: 3866b346a0ca5314aae05ea23fd8edea,
+    type: 3}
+  _dayCounterView: {fileID: 9175873092472292639, guid: 51fe0fb56e5184c429b2b5124ca234ac,
+    type: 3}
+  _buildingWindowInfoView: {fileID: 6347630093621401535, guid: 14bec2a3c2e0e14468f0e5fcd40a8a82,
+    type: 3}
+  _inventoryView: {fileID: 8923991739881942021, guid: b15d1a03d4b221c47a0b298b317fa607,
+    type: 3}
+  _transferPopupView: {fileID: 5205867015988698640, guid: 2a969fbcbb32ab446a8e23b7cf4d8a50,
+    type: 3}
