@@ -25,14 +25,14 @@ namespace Items.ResourceItems
         
         public ResourcesStorage(ResourceItemsDatabase resourceItemsDatabase)
         {
-            // foreach (var resourceItemData in resourceItemsDatabase.ResourceItemsData)
-            // {
-            //     _resourceItemsData.Add(new ResourceItemData(resourceItemData.Weight,
-            //         resourceItemData.ResourceItemType,
-            //         resourceItemData.View,
-            //         resourceItemData.Amount));
-            //
-            // }
+            foreach (var resourceItemData in resourceItemsDatabase.ResourceItemsData)
+            {
+                _resourceItemsData.Add(new ResourceItemData(resourceItemData.Weight,
+                    resourceItemData.ResourceItemType,
+                    resourceItemData.View,
+                    resourceItemData.Amount));
+            
+            }
         }
 
         public void AddResource(EResourceItemType type, float amount)

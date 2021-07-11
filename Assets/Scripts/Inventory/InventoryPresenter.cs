@@ -72,7 +72,6 @@ namespace Inventory
         public void Initialize()
         {
             _view.Hide();
-            _playerInputControls.CheatAddResources(_characterResourcesStorage);
 
             if (_leftSideCells.Count > 0 && _rightSideCells.Count > 0)
                 return;

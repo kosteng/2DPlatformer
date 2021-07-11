@@ -4,6 +4,7 @@ using InputControls;
 using InputControls.InpitClicker;
 using Items;
 using Items.ResourceItems;
+using LevelGeneration;
 using UnityEngine;
 
 namespace Units.Controllers
@@ -29,7 +30,8 @@ namespace Units.Controllers
             IPlayerInputControls playerInputControls,
             ICharacterAnimationSwitcher characterAnimationSwitcher,
             ResourceItemsDatabase resourceItemsDatabase,
-            InteractableItemController interactableItemController)
+            InteractableItemController interactableItemController,
+            ILevelGenerator levelGenerator)
         {
             _inputClicker = inputClicker;
             _playerInputControls = playerInputControls;
@@ -45,6 +47,8 @@ namespace Units.Controllers
                 _interactableItemController.InteractableItem.Transform.position.y + 1f);
             
             _interactableItemController.SetPlayer(_characterModel);
+            
+            levelGenerator.Generate();
         }
 
         private float _speed = 1;

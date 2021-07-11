@@ -1,7 +1,6 @@
 ﻿using Characters.Controllers;
 using Engine.Mediators;
 using Engine.UI.Canvas;
-using Extensions.Pool;
 using InputControls;
 using InputControls.CameraControls;
 using InputControls.InpitClicker;
@@ -10,7 +9,7 @@ using Items.ResourceItems;
 using UI.BottomPanel;
 using Units.Controllers;
 using Zenject;
-
+using LevelGeneration;
 namespace Engine.Installers
 {
     public class CommonInstaller : MonoInstaller
@@ -23,6 +22,7 @@ namespace Engine.Installers
             InventorySystem();
             Items();
             Ui();
+            LevelGenerator();
         }
 
 
@@ -58,6 +58,10 @@ namespace Engine.Installers
             Container.BindInterfacesTo<ResourceItemsTransfer>().AsSingle();
         }
 
+        private void LevelGenerator()
+        {
+            Container.BindInterfacesTo<LevelGenerator>().AsSingle();
+        }
         private void Ui()
         {
             Container.BindInterfacesTo<CanvasContainer>().AsSingle();

@@ -4,6 +4,7 @@ using System.Linq;
 using Engine.Mediators;
 using Items.InteractItems;
 using Items.InteractItems.Interfaces;
+using Items.ResourceItems;
 using System;
 using UnityEngine;
 using static UnityEngine.Object;
@@ -43,30 +44,40 @@ namespace Items
 
         private void OnPlayerInteract(IInteractableItem item)
         {
-            switch (@item.ItemType)
+            switch (item.ItemType)
             {
                 case EInteractItemType.StartLevel:
                     break;
+
                 case EInteractItemType.FinishLevel:
                     break;
+
                 case EInteractItemType.Portal:
                     if (Input.GetKeyDown(KeyCode.F))
                         _characterModel.View.transform.position = new Vector2(item.InPortal.transform.position.x,
-                            item.InPortal.transform.position.y + 1f);
+                            item.InPortal.transform.position.y);
                     break;
+
                 case EInteractItemType.PortalIn:
                     if (Input.GetKeyDown(KeyCode.F))
                         _characterModel.View.transform.position = new Vector2(item.InPortal.transform.position.x,
-                            item.InPortal.transform.position.y + 1f);
+                            item.InPortal.transform.position.y);
                     break;
+
                 case EInteractItemType.PortalOut:
                     break;
+
                 case EInteractItemType.PortalDeath:
                     if (Input.GetKeyDown(KeyCode.F))
                         _characterModel.View.transform.position = new Vector2(InteractableItem.Transform.position.x,
-                            InteractableItem.Transform.position.y + 1f);
-
+                            InteractableItem.Transform.position.y);
                     break;
+
+                case EInteractItemType.Coin:
+                    _characterModel.ResourcesStorage.AddResource(EResourceItemType.Gold, 1);
+                    Destroy(item.Transform.gameObject);
+                    break;
+                
                 default:
                     throw new ArgumentOutOfRangeException();
             }

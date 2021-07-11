@@ -15,9 +15,19 @@ namespace Items.InteractItems
         public Transform Transform => transform;
         public Transform InPortal => _inPortal;
 
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            if (other.gameObject.CompareTag("Player") && _itemType == EInteractItemType.Coin)
+            {
+                OnPlayerTriggered?.Invoke(this);
+            }
+        }
 
         private void OnTriggerStay2D(Collider2D other)
         {
+            if (_itemType == EInteractItemType.Coin)
+                return;
+
             if (other.gameObject.CompareTag("Player"))
             {
                 OnPlayerTriggered?.Invoke(this);

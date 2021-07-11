@@ -7,6 +7,7 @@
         Portal,
         PortalIn,
         PortalOut,
-        PortalDeath
+        PortalDeath,
+        Coin
     }
 }
