@@ -20,9 +20,9 @@ namespace Engine.Installers
             Mediators();
             InputControls();
             InventorySystem();
+            LevelGenerator();
             Items();
             Ui();
-            LevelGenerator();
         }
 
 

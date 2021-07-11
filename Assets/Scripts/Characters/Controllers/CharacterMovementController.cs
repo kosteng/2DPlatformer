@@ -30,8 +30,7 @@ namespace Units.Controllers
             IPlayerInputControls playerInputControls,
             ICharacterAnimationSwitcher characterAnimationSwitcher,
             ResourceItemsDatabase resourceItemsDatabase,
-            InteractableItemController interactableItemController,
-            ILevelGenerator levelGenerator)
+            InteractableItemController interactableItemController)
         {
             _inputClicker = inputClicker;
             _playerInputControls = playerInputControls;
@@ -43,12 +42,10 @@ namespace Units.Controllers
             //todo нужна фабрика
             if (_characterModel.View == null)
                 _characterModel.View = Object.Instantiate(charactersDatabase.CharacterModels[0].View);
-            _characterModel.View.transform.position = new Vector2(_interactableItemController.InteractableItem.Transform.position.x, 
-                _interactableItemController.InteractableItem.Transform.position.y + 1f);
+            _characterModel.View.transform.position = new Vector3(_interactableItemController.InteractableItem.Transform.position.x, 
+                _interactableItemController.InteractableItem.Transform.position.y + 1f, -1f);
             
             _interactableItemController.SetPlayer(_characterModel);
-            
-            levelGenerator.Generate();
         }
 
         private float _speed = 1;

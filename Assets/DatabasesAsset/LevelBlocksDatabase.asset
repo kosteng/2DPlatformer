@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: accbb8eb2368465f959ad5d6aa8aeeae, type: 3}
   m_Name: LevelBlocksDatabase
   m_EditorClassIdentifier: 
-  _blocks: []
+  _blocks:
+  - {fileID: 599938936471875233, guid: 0a735ec9492190640a27d92de151a9ca, type: 3}

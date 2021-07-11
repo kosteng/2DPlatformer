@@ -5,6 +5,7 @@ using Engine.Mediators;
 using Items.InteractItems;
 using Items.InteractItems.Interfaces;
 using Items.ResourceItems;
+using LevelGeneration;
 using System;
 using UnityEngine;
 using static UnityEngine.Object;
@@ -19,10 +20,10 @@ namespace Items
         public IInteractableItem InteractableItem;
         private CharacterModel _characterModel;
 
-        public InteractableItemController(IInteractItemFactory itemFactory)
+        public InteractableItemController(IInteractItemFactory itemFactory, ILevelGenerator levelGenerator)
         {
             _itemFactory = itemFactory;
-
+            levelGenerator.Generate();
             var interactObjects = FindObjectsOfType<InteractableItemView>() as IInteractableItem[];
             _items = interactObjects.ToList();
             foreach (var Item in _items.Where(item => item.ItemType == EInteractItemType.StartLevel))
@@ -35,6 +36,8 @@ namespace Items
             {
                 item.OnPlayerTriggered += OnPlayerInteract;
             }
+
+            Debug.Log(_items.Count);
         }
 
         public void SetPlayer(CharacterModel characterModel)

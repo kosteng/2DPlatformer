@@ -18,6 +18,8 @@ MonoBehaviour:
     type: 2}
   _charactersDatabase: {fileID: 11400000, guid: 614d93cb44f52b24db29fb2f51130ad1,
     type: 2}
+  _levelBlocksDatabase: {fileID: 11400000, guid: 8c1fe60bc4e6f9b4d833fe7e6caf83ac,
+    type: 2}
   _player: {fileID: 8692035332060210218, guid: 56a0fa117c82d534badc915f8592e2a3, type: 3}
   _cameraView: {fileID: 1644961497289866044, guid: dd5f6c43423fead4ca1f13c9aee0b111,
     type: 3}
