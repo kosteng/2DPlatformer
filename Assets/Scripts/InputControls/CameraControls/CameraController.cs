@@ -1,4 +1,5 @@
 ﻿using Engine.Mediators;
+using Units.Controllers;
 using UnityEngine;
 using Zenject;
 
@@ -7,98 +8,28 @@ namespace InputControls.CameraControls
     public class CameraController : IUpdatable, IInitializable
     {
         private CameraView _cameraView;
+        private readonly CharacterMovementController _characterMovementController;
+        private float _offet = 7f;
 
-        private float _correctY;
-        private float _rotation;
-        private float _rotationZoom;
-        private const float SIGN = 1f;
-        
-        //todo вынести значения в конфиг
-        private const float ROTATION_SPEED = 0.5f;
-        private const float SCROLL_SPEED = 10f;
-        private const float ZOOM_SPEED = 100f;
-        private const float ZOOM_ROTATION = 1f;//0.5f;
-        private const float MIN_ZOOM_RANGE = 2f;
-        private const float MAX_ZOOM_RANGE = 50f;
-
-        public CameraController(CameraView cameraView)
+        public CameraController(CameraView cameraView, CharacterMovementController characterMovementController)
         {
             _cameraView = cameraView;
+            _characterMovementController = characterMovementController;
         }
 
         public void Update(float deltaTime)
         {
-            Zoom();
-            Position();
-            Rotation();
+
+            _cameraView.transform.position = new Vector3(
+                _characterMovementController.CharacterModel.View.transform.position.x,
+                _characterMovementController.CharacterModel.View.transform.position.y + _offet,
+                -10f); 
         }
 
         public void Initialize()
         {
             //todo фабрика плачет
-            _cameraView = Object.Instantiate(_cameraView, new Vector3(0f, 10f, -10f), Quaternion.identity);
-        }
-
-        private void SetCorrectPosition(Transform transform)
-        {
-            var position = transform.position;
-            position = new Vector3(position.x, _correctY, position.z);
-            transform.position = position;
-        }
-        
-        private void Position()
-        {
-            // if (Input.GetKey(KeyCode.D))
-            //     _cameraView.transform.Translate(Vector3.right * (SCROLL_SPEED * Time.deltaTime), Space.Self);
-            //
-            // if (Input.GetKey(KeyCode.A))
-            //     _cameraView.transform.Translate(Vector3.left * (SCROLL_SPEED * Time.deltaTime), Space.Self);
-            //
-            // if (Input.GetKey(KeyCode.W))
-            // {
-            //     _cameraView.transform.Translate(Vector3.forward * (SCROLL_SPEED * Time.deltaTime), Space.Self);
-            //     SetCorrectPosition(_cameraView.transform);
-            // }
-            //
-            // if (Input.GetKey(KeyCode.S))
-            // {
-            //     _cameraView.transform.Translate(Vector3.back * (SCROLL_SPEED * Time.deltaTime), Space.Self);
-            //     SetCorrectPosition(_cameraView.transform);
-            // }
-        }
-
-        private void Rotation()
-        {
-            // if (Input.GetKey(KeyCode.Q))
-            //     CalculateRotation(-SIGN);
-            //
-            // if (Input.GetKey(KeyCode.E))
-            //     CalculateRotation(SIGN);
-        }
-
-        private void Zoom()
-        {
-            // float mouseWheel = Input.GetAxis("Mouse ScrollWheel");
-            //
-            // if (mouseWheel > 0 && _cameraView.transform.position.y > MIN_ZOOM_RANGE)
-            //     CalculateZoom(-SIGN);
-            //
-            // if (mouseWheel < 0 && _cameraView.transform.position.y < MAX_ZOOM_RANGE)
-            //     CalculateZoom(SIGN);
-            // _correctY = _cameraView.transform.position.y;
-        }
-
-        private void CalculateZoom(float sign)
-        {
-            _rotationZoom += ZOOM_ROTATION * sign;
-            _cameraView.transform.Translate(0, ZOOM_SPEED * Time.deltaTime * sign, 0);
-            _cameraView.transform.localRotation = Quaternion.Euler(_rotationZoom, _rotation, 0);
-        }
-
-        private void CalculateRotation(float sign)
-        {
-            _rotation += ROTATION_SPEED * sign;
-            _cameraView.transform.localRotation = Quaternion.Euler(_rotationZoom, _rotation, 0f);
+            _cameraView = Object.Instantiate(_cameraView, new Vector3(0f, -5f, -10f), Quaternion.identity);
         }
     }
 }

@@ -16,10 +16,8 @@ namespace Items.InteractItems
     {
         [SerializeField] private EInteractItemType _type;
         [SerializeField] private InteractableItemView _itemView;
-        [SerializeField] private ResourceItemPriceDataWithRandom[] resourceItemsPriceDataWithRandom;
-        
+
         public EInteractItemType Type => _type;
         public InteractableItemView ItemView => _itemView;
-        public ResourceItemPriceDataWithRandom[] ResourceItemsPriceDataWithRandom => resourceItemsPriceDataWithRandom;
     }
 }

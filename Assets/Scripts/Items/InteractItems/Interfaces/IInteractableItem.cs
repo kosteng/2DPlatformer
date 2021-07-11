@@ -1,15 +1,13 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Items.InteractItems.Interfaces
 {
     public interface IInteractableItem
     {
-        EInteractItemType ItemType { get; }
-        bool IsExtracted { get; set; }
+        EInteractItemType ItemType { get; } 
         Transform Transform { get; }
-        float RespawnTime { get; set; }
-        float ExtractTime { get; set; }
-        void Reset();
-        void CheckRespawnStatus();
+        Transform InPortal { get; }
+        event Action<IInteractableItem> OnPlayerTriggered;
     }
 }

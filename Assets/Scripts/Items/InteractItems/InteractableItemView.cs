@@ -1,4 +1,5 @@
 ﻿using Items.InteractItems.Interfaces;
+using System;
 using UnityEngine;
 
 namespace Items.InteractItems
@@ -6,45 +7,22 @@ namespace Items.InteractItems
     public class InteractableItemView : MonoBehaviour, IInteractableItem
     {
         [SerializeField] private EInteractItemType _itemType;
-        [SerializeField] private float _respawnTime = 2000f;
-        [SerializeField] private float _extractTime = 5f;
+        [SerializeField] private Transform _inPortal;
+        
+        public event Action<IInteractableItem> OnPlayerTriggered;
         public EInteractItemType ItemType => _itemType;
-        public bool IsExtracted { get; set; }
+ 
         public Transform Transform => transform;
-        public float RespawnTime { get; set; }
-        public float ExtractTime { get; set; }
-    
-        private void SetInitialData()
-        {
-            RespawnTime = _respawnTime;
-            ExtractTime = _extractTime;
-        }
+        public Transform InPortal => _inPortal;
 
-        private void Awake()
-        {
-            SetInitialData();
-        }
 
-        public void Reset()
+        private void OnTriggerStay2D(Collider2D other)
         {
-            IsExtracted = false;
-            SetInitialData();
-            transform.gameObject.SetActive(true);
-        }
-
-        public void CheckRespawnStatus()
-        {
-            if (!IsExtracted)
-                return;
-
-            if (RespawnTime < 0)
+            if (other.gameObject.CompareTag("Player"))
             {
-                Reset();
-            }
-            else
-            {
-                RespawnTime -= Time.deltaTime;
+                OnPlayerTriggered?.Invoke(this);
             }
         }
+        
     }
 }

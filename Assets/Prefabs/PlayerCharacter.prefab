@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7118540332978346696}
   - component: {fileID: 7139051519473052950}
   - component: {fileID: 8692035332060210218}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PlayerCharacter
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -104,7 +104,7 @@ Rigidbody2D:
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
-  m_SleepingMode: 1
+  m_SleepingMode: 0
   m_CollisionDetection: 0
   m_Constraints: 4
 --- !u!82 &7118540332978346696
@@ -216,8 +216,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.25353193, y: -0.029975772}
-  m_Size: {x: 0.6101513, y: 3.340522}
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 2, y: 10}
   m_Direction: 0
 --- !u!114 &8692035332060210218
 MonoBehaviour:
@@ -248,7 +248,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7198730500182031388}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ShotPlaceRight
   m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
